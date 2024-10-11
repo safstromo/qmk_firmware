@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 * |------+------+------+------+------|                              |------+------+------+------+------|
 * |   Z  |   X  |   C  |   D  |   V  |                              |   K  |   H  | ,  < | . >  | /  ? |
 * `--------------------+------+------|                              |------+------+------+------+------'
-*               |      |  Sym |Space |                              | Enter|  Nav |      |
+*               | GUI  |  Sym |Space |                              | Enter|  Nav | GUI  |
 *               `------`-------------'                              `-------------'------'
 */
   [LAYER_BASE] = LAYOUT_split_3x5_3(
@@ -53,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                                            KC_K,    KC_H, KC_COMM,  KC_DOT, KC_SLSH,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, TAB_SYM, SPC_NAV,   ENT_NAV, BSP_NAV, KC_RALT
+                                          KC_LGUI, TAB_SYM, SPC_NAV,   ENT_NAV, BSP_NAV, KC_LGUI
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -64,9 +64,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,----------------------------------.                              ,----------------------------------.
      * |   1  |   2  |  3   |  4   |  5   |                              |   6  |   7  |   8  |   9  |  0   |
      * |------+------+------+------+------|                              |------+------+------+------+------|
-     * | PSCR |      |      |      | Home |                              |  End |  ←   |   ↓  |  ↑   |  →   |
+     * |      |      |      |      | Home |                              |  End |  ←   |   ↓  |  ↑   |  →   |
      * |------+------+------+------+------|                              |------+------+------+------+------|
-     * | PSCR | CUT  | COPY | UNDO | PASTE|                              |      | Home | PgDn | PgUp |      |
+     * |      | CUT  | COPY | UNDO | PASTE|                              |      | Home | PgDn | PgUp |      |
      * `--------------------+------+------|                              |------+------+------+------+------'
      *               | BSPC |Space |Fkeys |                              | Enter|      |      |
      *               `------`-------------'                              `-------------'------'
@@ -76,11 +76,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_PSCR, _______, _______, _______, KC_HOME,                               KC_END, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
+      _______, _______, _______, _______, KC_HOME,                               KC_END, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_PSCR,     CUT,    COPY,    UNDO,   PASTE,                              KC_PGDN, KC_HOME,  KC_PGDN,  KC_PGUP, _______,
+      _______,     CUT,    COPY,    UNDO,   PASTE,                              KC_PGDN, KC_HOME,  KC_PGDN,  KC_PGUP, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_TRNS, FKEYS, KC_TRNS,     KC_TRNS ,KC_TRNS, _______
+                                          KC_TRNS, FKEYS, KC_TRNS,     KC_TRNS ,KC_TRNS, KC_TRNS
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -100,13 +100,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LAYER_SYMBOLS] = LAYOUT_split_3x5_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       _______, _______, SFT_QT, KC_BSLS, _______,                               _______, _______, ALT_SQT, _______, _______,
+       _______, KC_DQT, SFT_QT, KC_BSLS, _______,                               _______, _______, ALT_SQT, KC_QUOT, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_EXLM,   KC_AT, KC_HASH, KC_DLR, KC_PERC,                               KC_CIRC, KC_LBRC, KC_RBRC, KC_AMPR, KC_ASTR,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, KC_TILD, KC_GRV, KC_PIPE, _______,                                KC_MINS, KC_MINS, KC_EQL, KC_PPLS, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, FKEYS, _______
+                                          KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, FKEYS, KC_TRNS
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -129,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, _______,                              _______, KC_LCTL, KC_LSFT, KC_LALT, KC_F11,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_PSCR, _______, _______, _______, _______,                                COLEMAK, KC_VOLU, KC_VOLD, KC_MUTE, KC_F12,
+      KC_PSCR, _______, _______, _______, RGB_TOG,                                _______, KC_VOLU, KC_VOLD, KC_MUTE, KC_F12,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                          _______, _______, _______,     _______, _______, _______
                                       //`--------------------------'  `--------------------------'
@@ -198,77 +198,51 @@ void keyboard_post_init_user(void) {
   rgblight_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
 }
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-// https://colorpicker.me/#fff115
-  // shift rgb
-  uint8_t mods = get_mods() | get_weak_mods() | get_oneshot_mods();
-  if ((mods) & MOD_MASK_SHIFT ) {
-    rgb_matrix_set_color_all(31, 206, 211); // turquoise
-  };
   // layer rgb
   for (uint8_t i = led_min; i < led_max; i++) {
     switch(get_highest_layer(layer_state|default_layer_state)) {
       //base
       case 0:
-        rgblight_sethsv(4, 75, 150); // warmwhite (werte = hue, saturation, value)
+        rgblight_sethsv(HSV_MAGENTA);
         break;
-      // num
+      // nav
       case 1:
         // <led-index> {siehe ../../skeletyl.c) <rgb-wert>
         // color thumbs
-        rgb_matrix_set_color(35, 255, 165, 0); // orange
-        rgb_matrix_set_color(34, 255, 165, 0); // orange
-        rgb_matrix_set_color(33, 255, 165, 0); // orange
+        rgb_matrix_set_color(35, RGB_ORANGE);
+        rgb_matrix_set_color(34, RGB_ORANGE);
+        rgb_matrix_set_color(33, RGB_ORANGE);
         break;
       // sym
       case 2:
         // color thumbs
-        rgb_matrix_set_color(15, 0, 90, 255); // blue
-        rgb_matrix_set_color(16, 0, 90, 255); // blue
-        rgb_matrix_set_color(17, 0, 90, 255); // blue
-        // color pairs
-	        // ´`
-        rgb_matrix_set_color(5, 20, 214, 22); // 50 shades of green
-        rgb_matrix_set_color(11, 20, 214, 22); // 50 shades of green
-        // []
-        rgb_matrix_set_color(3, 44, 0, 232); // 50 shades of blue
-        rgb_matrix_set_color(21, 44, 0, 232); // 50 shades of blue
-        // ()
-        rgb_matrix_set_color(8, 44, 0, 207); // 50 shades of blue
-        rgb_matrix_set_color(26, 44, 0, 207); // 50 shades of blue
-        // {}
-        rgb_matrix_set_color(9, 44, 0, 171); // 50 shades of blue
-        rgb_matrix_set_color(27, 44, 0, 171); // 50 shades of blue
-        // \/
-        rgb_matrix_set_color(13, 235, 235, 19); // 50 shades of yellow
-        rgb_matrix_set_color(31, 235, 235, 19); // 50 shades of yellow
-        // <>
-        rgb_matrix_set_color(14, 235, 56, 19); // 50 shades of red
-        rgb_matrix_set_color(32, 235, 56, 19); // 50 shades of red
+        rgb_matrix_set_color(15, RGB_CYAN);
+        rgb_matrix_set_color(16, RGB_CYAN);
+        rgb_matrix_set_color(17, RGB_CYAN);
         break;
-      // mov
+      // function
       case 3:
         // color thumbs
-        rgb_matrix_set_color(35, 4, 147, 4); // green
-        rgb_matrix_set_color(34, 4, 147, 4); // green
-        rgb_matrix_set_color(33, 4, 147, 4); // green
-        rgb_matrix_set_color(15, 4, 147, 4); // green
-        rgb_matrix_set_color(16, 4, 147, 4); // green
-        rgb_matrix_set_color(17, 4, 147, 4); // green
-        break;
-      // media
-      case 4:
-        // color thumbs
-        rgb_matrix_set_color(35, 255, 241, 21); // yellow
-        rgb_matrix_set_color(34, 255, 241, 21); // yellow
-        rgb_matrix_set_color(33, 255, 241, 21); // yellow
-        rgb_matrix_set_color(15, 255, 241, 21); // yellow
-        rgb_matrix_set_color(16, 255, 241, 21); // yellow
-        rgb_matrix_set_color(17, 255, 241, 21); // yellow
+        rgb_matrix_set_color(35, RGB_GREEN);
+        rgb_matrix_set_color(34, RGB_GREEN);
+        rgb_matrix_set_color(33, RGB_GREEN);
+        rgb_matrix_set_color(15, RGB_GREEN);
+        rgb_matrix_set_color(16, RGB_GREEN);
+        rgb_matrix_set_color(17, RGB_GREEN);
         break;
       default:
-        rgblight_sethsv(4, 75, 150); // warmwhite (werte = hue, saturation, value)
+        rgblight_sethsv(HSV_MAGENTA);
         break;
     }
   }
   return false;
+}
+
+void keyboard_pre_init_user(void) {
+// Disable Liatris LED
+  // Set our LED pin as output
+  setPinOutput(24);
+  // Turn the LED off
+  // (Due to technical reasons, high is off and low is on)
+  writePinHigh(24);
 }
