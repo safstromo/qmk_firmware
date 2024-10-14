@@ -179,6 +179,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 };
+
 // Tapping speed
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -246,3 +247,41 @@ void keyboard_pre_init_user(void) {
   // (Due to technical reasons, high is off and low is on)
   writePinHigh(24);
 }
+
+//This part is the same functionality as zmk require-prior-idle
+// Decision macro for mod-tap keys to override
+#define IS_HOMEROW_MOD_TAP(kc) ( \
+    IS_QK_MOD_TAP(kc) && \
+    ((QK_MOD_TAP_GET_TAP_KEYCODE(kc) >= KC_A && \
+      QK_MOD_TAP_GET_TAP_KEYCODE(kc) <= KC_Z) || \
+      QK_MOD_TAP_GET_TAP_KEYCODE(kc) == KC_SPC))
+
+// Decision macro for preceding trigger key and typing interval
+#define IS_TYPING(k) ( \
+    ((uint8_t)(k) <= KC_Z || (uint8_t)(k) == KC_SPC) && \
+    (last_input_activity_elapsed() < QUICK_TAP_TERM)    )
+
+bool pre_process_record_user(uint16_t keycode, keyrecord_t *record) {
+    static bool     is_pressed[UINT8_MAX];
+    static uint16_t prev_keycode;
+    const  uint16_t tap_keycode = QK_MOD_TAP_GET_TAP_KEYCODE(keycode);
+
+    if (record->event.pressed) {
+        // Press the tap keycode if the tap-hold key follows the previous key swiftly
+        if (IS_HOMEROW_MOD_TAP(keycode) && IS_TYPING(prev_keycode)) {
+            is_pressed[tap_keycode] = true;
+            record->keycode = tap_keycode;
+        }
+        // Cache the keycode for subsequent tap decision
+        prev_keycode = keycode;
+    }
+
+    // Release the tap keycode if pressed
+    else if (is_pressed[tap_keycode]) {
+        is_pressed[tap_keycode] = false;
+        record->keycode = tap_keycode;
+    }
+
+    return true;
+}
+
